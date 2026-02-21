@@ -1,10 +1,10 @@
-configuration File
-Change database and email for your own personal server, I'm using random words
+# configuration File
+# Change database and email for your own personal server, I'm using random words
 
 DB_CONFIG = {
     "host": "localhost",
-    "user": "Ayan",
-    "password": "Khan",
+    "user": "host",
+    "password": "1212",
     "database": "library_db" 
 }
 

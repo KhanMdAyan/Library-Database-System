@@ -126,7 +126,22 @@ class BorrowedWindow(QMainWindow):
     def populate_table(self, records):
         self.table.setRowCount(len(records))
         self.table.setColumnCount(len(records[0]) if records else 0)
+        self.table.setColumnCount(12)
 
+        self.table.setHorizontalHeaderLabels([
+            "Borrow ID",
+            "Book ID",
+            "Book Name",
+            "Issued By",
+            "Issued To ID",
+            "Type",
+            "Issued Date",
+            "Due Date",
+            "Return Date",
+            "Pending Fine",
+            "Last Fine Update",
+            "Status"
+        ])
         for row, record in enumerate(records):
             for col, value in enumerate(record):
                 self.table.setItem(row, col, QTableWidgetItem(str(value)))
