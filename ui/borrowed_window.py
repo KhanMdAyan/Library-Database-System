@@ -209,6 +209,10 @@ class BorrowedWindow(QMainWindow):
 
         QMessageBox.information(self, "Result", result)
         self.load_all()
+        self.issue_book_id.clear()
+        self.issue_staff_id.clear()
+        self.issue_borrower_id.clear()
+        self.issue_type_input.clear()
 
     # ------------------ RETURN ------------------
 

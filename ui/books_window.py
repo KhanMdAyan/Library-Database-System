@@ -102,6 +102,10 @@ class BooksWindow(QMainWindow):
         )
 
         self.load_data()
+        self.title_input.clear()
+        self.topic_input.clear()
+        self.isbn_input.clear()
+        self.price_input.clear()
 
     # ---------------- REMOVE BOOK ----------------
 
