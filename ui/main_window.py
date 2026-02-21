@@ -1,4 +1,5 @@
 from PySide6.QtWidgets import QMainWindow, QPushButton, QVBoxLayout, QWidget
+from PySide6.QtCore import Qt
 from ui.books_window import BooksWindow
 from ui.employees_window import EmployeesWindow
 from ui.students_window import StudentsWindow
@@ -9,14 +10,24 @@ class MainWindow(QMainWindow):
     def __init__(self):
         super().__init__()
         self.setWindowTitle("Library Management System")
+        self.setMinimumWidth(600)
 
         layout = QVBoxLayout()
+        layout.setAlignment(Qt.AlignCenter)
 
         self.book_btn = QPushButton("Book List")
         self.employee_btn = QPushButton("Employee List")
         self.student_btn = QPushButton("Student List")
         self.prof_btn = QPushButton("Professor List")
         self.borrowed_btn = QPushButton("Borrowed List")
+
+
+        #Putting fixed button length for better visuals
+        self.book_btn.setFixedWidth(200)
+        self.employee_btn.setFixedWidth(200)
+        self.student_btn.setFixedWidth(200)
+        self.prof_btn.setFixedWidth(200)
+        self.borrowed_btn.setFixedWidth(200)
 
         layout.addWidget(self.book_btn)
         layout.addWidget(self.employee_btn)
