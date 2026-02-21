@@ -1,7 +1,7 @@
 from PySide6.QtWidgets import (
     QMainWindow, QVBoxLayout, QWidget,
     QPushButton, QTableWidget, QTableWidgetItem,
-    QLineEdit, QLabel, QMessageBox
+    QLineEdit, QLabel, QMessageBox, QComboBox
 )
 
 from services.borrow_service import return_book, issue_book
@@ -58,15 +58,15 @@ class BorrowedWindow(QMainWindow):
         self.issue_borrower_id = QLineEdit()
         self.issue_borrower_id.setPlaceholderText("Borrower ID")
 
-        self.issue_type_input = QLineEdit()
-        self.issue_type_input.setPlaceholderText("Borrower Type (Student/Professor)")
+        self.issue_type_dropdown = QComboBox()
+        self.issue_type_dropdown.addItems(["Student", "Professor"])
 
         self.issue_btn = QPushButton("Issue Book")
 
         layout.addWidget(self.issue_book_id)
         layout.addWidget(self.issue_staff_id)
         layout.addWidget(self.issue_borrower_id)
-        layout.addWidget(self.issue_type_input)
+        layout.addWidget(self.issue_type_dropdown)
         layout.addWidget(self.issue_btn)
         # Return Section
         self.return_staff_input = QLineEdit()
@@ -199,16 +199,12 @@ class BorrowedWindow(QMainWindow):
         book_id = self.issue_book_id.text()
         staff_id = self.issue_staff_id.text()
         borrower_id = self.issue_borrower_id.text()
-        borrower_type = self.issue_type_input.text()
-
-        if borrower_type not in ["Student", "Professor"]:
-            QMessageBox.warning(self, "Error", "Type must be Student or Professor")
-            return
-
+        borrower_type = self.issue_type_dropdown.currentText()
         result = issue_book(book_id, staff_id, borrower_id, borrower_type)
 
         QMessageBox.information(self, "Result", result)
         self.load_all()
+        self.issue_type_dropdown.setCurrentIndex(0)
 
     # ------------------ RETURN ------------------
 
