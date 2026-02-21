@@ -1,5 +1,5 @@
 from PySide6.QtWidgets import (
-    QMainWindow, QVBoxLayout, QWidget,
+    QMainWindow, QVBoxLayout, QHBoxLayout, QWidget,
     QPushButton, QTableWidget, QTableWidgetItem,
     QLineEdit, QLabel, QMessageBox, QComboBox
 )
@@ -14,39 +14,43 @@ class BorrowedWindow(QMainWindow):
     def __init__(self):
         super().__init__()
         self.setWindowTitle("Borrowed List")
+        self.showMaximized()
 
         # Run daily systems automatically
         run_daily_fine_update()
         send_overdue_emails()
 
-        layout = QVBoxLayout()
+        main_layout = QHBoxLayout()
+        right_layout = QVBoxLayout()
+        
 
         self.table = QTableWidget()
-        layout.addWidget(self.table)
+        main_layout.addWidget(self.table, 3)
+        main_layout.addLayout(right_layout, 1)
 
         # Search Borrower
         self.borrower_search = QLineEdit()
         self.borrower_search.setPlaceholderText("Search Borrower ID")
-        layout.addWidget(self.borrower_search)
+        right_layout.addWidget(self.borrower_search)
 
         self.borrower_btn = QPushButton("Search Borrower")
-        layout.addWidget(self.borrower_btn)
+        right_layout.addWidget(self.borrower_btn)
 
         # Search Staff
         self.staff_search = QLineEdit()
         self.staff_search.setPlaceholderText("Search Staff ID")
-        layout.addWidget(self.staff_search)
+        right_layout.addWidget(self.staff_search)
 
         self.staff_btn = QPushButton("Search Staff")
-        layout.addWidget(self.staff_btn)
+        right_layout.addWidget(self.staff_btn)
 
         # Search Book
         self.book_search = QLineEdit()
         self.book_search.setPlaceholderText("Search Book ID")
-        layout.addWidget(self.book_search)
+        right_layout.addWidget(self.book_search)
 
         self.book_btn = QPushButton("Search Book")
-        layout.addWidget(self.book_btn)
+        right_layout.addWidget(self.book_btn)
         # -------- ISSUE SECTION --------
 
         self.issue_book_id = QLineEdit()
@@ -63,24 +67,24 @@ class BorrowedWindow(QMainWindow):
 
         self.issue_btn = QPushButton("Issue Book")
 
-        layout.addWidget(self.issue_book_id)
-        layout.addWidget(self.issue_staff_id)
-        layout.addWidget(self.issue_borrower_id)
-        layout.addWidget(self.issue_type_dropdown)
-        layout.addWidget(self.issue_btn)
+        right_layout.addWidget(self.issue_book_id)
+        right_layout.addWidget(self.issue_staff_id)
+        right_layout.addWidget(self.issue_borrower_id)
+        right_layout.addWidget(self.issue_type_dropdown)
+        right_layout.addWidget(self.issue_btn)
         # Return Section
         self.return_staff_input = QLineEdit()
         self.return_staff_input.setPlaceholderText("Receiving Staff ID")
-        layout.addWidget(self.return_staff_input)
+        right_layout.addWidget(self.return_staff_input)
 
         self.return_btn = QPushButton("Mark as Returned")
-        layout.addWidget(self.return_btn)
+        right_layout.addWidget(self.return_btn)
 
         self.total_label = QLabel("")
-        layout.addWidget(self.total_label)
+        right_layout.addWidget(self.total_label)
 
         container = QWidget()
-        container.setLayout(layout)
+        container.setLayout(main_layout)
         self.setCentralWidget(container)
 
         self.borrower_btn.clicked.connect(self.search_borrower)
