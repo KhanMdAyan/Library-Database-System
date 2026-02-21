@@ -1,3 +1,5 @@
+# Professor list window UI's backend working.
+# fetches details, adds, removes and edits the list and updates the fines
 from database.connection import get_connection
 
 

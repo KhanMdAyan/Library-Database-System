@@ -1,3 +1,6 @@
+# The working logic behind the UIs
+# Importing, adding, editing, removing, searching from the database.
+
 from database.connection import get_connection
 
 def get_all_books():

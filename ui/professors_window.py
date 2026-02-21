@@ -1,3 +1,5 @@
+# The Professor's list window
+# Shows the list, can add/remove professors.
 from PySide6.QtWidgets import (
     QMainWindow, QVBoxLayout, QWidget,
     QPushButton, QTableWidget, QTableWidgetItem,

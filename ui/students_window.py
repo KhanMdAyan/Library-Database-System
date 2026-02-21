@@ -1,3 +1,6 @@
+# Student's window UI
+# Shows students list, can add, remove students, shows total pending fines too.
+
 from PySide6.QtWidgets import (
     QMainWindow, QVBoxLayout, QWidget,
     QPushButton, QTableWidget, QTableWidgetItem,

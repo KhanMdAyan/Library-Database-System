@@ -1,3 +1,7 @@
+# library staff list window UI's backend working.
+# fetches details, adds, removes and edits the list
+
+
 from database.connection import get_connection
 
 

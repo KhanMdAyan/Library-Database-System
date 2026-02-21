@@ -1,3 +1,6 @@
+# This will send a mail to the registered mail id about the book that is overdue, once a day.
+# Have to set email id and password in config, I changed it to default.
+
 import smtplib
 from email.message import EmailMessage
 from datetime import date
@@ -38,7 +41,7 @@ def send_overdue_emails():
     for record in records:
         borrow_id, book_name, fine, borrower_id, borrower_type, _ = record
 
-        # Get borrower email
+        # Get borrower email from db
         if borrower_type == "Student":
             cursor.execute("SELECT email FROM students WHERE student_id=%s", (borrower_id,))
         else:
@@ -58,7 +61,7 @@ def send_overdue_emails():
         msg.set_content(f"""
 Dear User,
 
-This is a reminder that the following book is overdue:
+This is a reminder that the following book is overdue. Not returnig it on time will result in fines.
 
 Book Name: {book_name}
 Current Pending Fine: {fine}
@@ -70,7 +73,7 @@ Library Management System
 
         server.send_message(msg)
 
-        # Update last_email_sent_date
+        # Update last_email_sent_date to not send double emails
         cursor.execute("""
             UPDATE borrowed
             SET last_email_sent_date=%s

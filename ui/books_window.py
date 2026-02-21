@@ -1,9 +1,12 @@
+# The books list window UI 
+
+
 from PySide6.QtWidgets import (
     QMainWindow, QVBoxLayout, QWidget,
     QPushButton, QTableWidget, QTableWidgetItem,
     QLineEdit, QMessageBox, QLabel
 )
-
+# Importing the services used for each button
 from services.book_service import (
     get_all_books,
     add_book,
@@ -24,7 +27,7 @@ class BooksWindow(QMainWindow):
         self.table = QTableWidget()
         layout.addWidget(self.table)
 
-        # Inputs
+        # Inputs for adding a book
         self.title_input = QLineEdit()
         self.title_input.setPlaceholderText("Book Title")
 
@@ -42,14 +45,14 @@ class BooksWindow(QMainWindow):
         layout.addWidget(self.isbn_input)
         layout.addWidget(self.price_input)
 
-        # Buttons
+        # Buttons sectino
         self.add_btn = QPushButton("Add Book")
         self.delete_btn = QPushButton("Remove Book")
 
         layout.addWidget(self.add_btn)
         layout.addWidget(self.delete_btn)
 
-        # Search
+        # Search feature
         self.search_input = QLineEdit()
         self.search_input.setPlaceholderText("Search by Book ID or ISBN")
 
@@ -69,7 +72,7 @@ class BooksWindow(QMainWindow):
 
         self.load_data()
 
-    # ---------------- LOAD ALL BOOKS ----------------
+    # Loading all books on starup
 
     def load_data(self):
         books = get_all_books()
@@ -85,7 +88,7 @@ class BooksWindow(QMainWindow):
             for col, value in enumerate(book):
                 self.table.setItem(row, col, QTableWidgetItem(str(value)))
 
-    # ---------------- ADD BOOK ----------------
+    # Add books method
 
     def add_book(self):
         try:
@@ -107,7 +110,6 @@ class BooksWindow(QMainWindow):
         self.isbn_input.clear()
         self.price_input.clear()
 
-    # ---------------- REMOVE BOOK ----------------
 
     def remove_book(self):
         row = self.table.currentRow()
@@ -119,7 +121,6 @@ class BooksWindow(QMainWindow):
         delete_book(book_id)
         self.load_data()
 
-    # ---------------- SEARCH ----------------
 
     def search_book(self):
         value = self.search_input.text()

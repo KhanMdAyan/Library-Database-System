@@ -1,3 +1,7 @@
+# Student list window UI's backend working.
+# fetches details, adds, removes and edits the list, updates the fine
+
+
 from database.connection import get_connection
 
 

@@ -1,3 +1,6 @@
+# Layout of employee's list window
+
+
 from PySide6.QtWidgets import (
     QMainWindow, QVBoxLayout, QWidget,
     QPushButton, QTableWidget, QTableWidgetItem,

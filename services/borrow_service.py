@@ -1,3 +1,9 @@
+# The borrowing logic and working behind the borrow list window.
+# I've set the borrow limit for students as five books and for professors ten books
+# It checks for book availability, validates everyone's IDs, sets due date, calculates fine,
+# and updates borrower's data, book's data once it is returned
+
+
 from datetime import date, timedelta
 from database.connection import get_connection
 from services.student_service import update_student_fine
@@ -7,7 +13,7 @@ def issue_book(book_id, staff_id, borrower_id, borrower_type):
     conn = get_connection()
     cursor = conn.cursor()
 
-    # 1️⃣ Validate Book
+    # Validating Book avaliability
     cursor.execute("SELECT book_title, book_price, status FROM books WHERE book_id=%s", (book_id,))
     book = cursor.fetchone()
 
@@ -21,13 +27,13 @@ def issue_book(book_id, staff_id, borrower_id, borrower_type):
         conn.close()
         return "Book is already borrowed"
 
-    # 2️⃣ Validate Staff
+    # Validating Staff ID
     cursor.execute("SELECT * FROM library_staff WHERE employee_id=%s", (staff_id,))
     if not cursor.fetchone():
         conn.close()
         return "Invalid staff ID"
 
-    # 3️⃣ Validate Borrower
+    #Validating Borrower
     if borrower_type == "Student":
         cursor.execute("SELECT * FROM students WHERE student_id=%s", (borrower_id,))
         if not cursor.fetchone():
@@ -70,7 +76,7 @@ def issue_book(book_id, staff_id, borrower_id, borrower_type):
         conn.close()
         return "Invalid borrower type"
 
-    # 4️⃣ Insert into Borrowed table
+    # Register the books in db
     cursor.execute("""
         INSERT INTO borrowed (
             book_id,
@@ -96,7 +102,7 @@ def issue_book(book_id, staff_id, borrower_id, borrower_type):
         date.today()
     ))
 
-    # 5️⃣ Update book status
+    # Update the book status in books table after it is borrowed
     cursor.execute("UPDATE books SET status='Borrowed' WHERE book_id=%s", (book_id,))
 
     conn.commit()
@@ -110,7 +116,7 @@ def return_book(borrow_id, receiving_staff_id):
     conn = get_connection()
     cursor = conn.cursor()
 
-    # 1️⃣ Validate borrow record
+    # Check if the borrow record exists
     cursor.execute("""
         SELECT book_id, issued_to_id, issued_to_type,
                due_date, pending_fines, status
@@ -129,7 +135,7 @@ def return_book(borrow_id, receiving_staff_id):
         conn.close()
         return "Book already returned"
 
-    # 2️⃣ Validate receiving staff
+    # Validate library staff that is receiving the book
     cursor.execute("SELECT * FROM library_staff WHERE employee_id=%s", (receiving_staff_id,))
     if not cursor.fetchone():
         conn.close()
@@ -137,7 +143,7 @@ def return_book(borrow_id, receiving_staff_id):
 
     today = date.today()
 
-    # 3️⃣ Calculate remaining fine (if overdue)
+    # Calculate remaining fine, if overdue
     additional_fine = 0
 
     if today > due_date:
@@ -156,13 +162,13 @@ def return_book(borrow_id, receiving_staff_id):
 
     total_fine = current_fine + additional_fine
 
-    # 4️⃣ Subtract fine from borrower total (fine considered paid)
+    # Once the book is returned the overdue fine is considered to be paid, hence subtract fine from borrower's total fine
     if borrower_type == "Student":
         update_student_fine(borrower_id, -total_fine)
     else:
         update_professor_fine(borrower_id, -total_fine)
 
-    # 5️⃣ Update borrowed record
+    # Update borrowed record as returned
     cursor.execute("""
         UPDATE borrowed
         SET status='Returned',
@@ -172,7 +178,7 @@ def return_book(borrow_id, receiving_staff_id):
         WHERE borrow_id=%s
     """, (today, receiving_staff_id, borrow_id))
 
-    # 6️⃣ Update book status
+    # Fnially, update book status in books list
     cursor.execute("UPDATE books SET status='Available' WHERE book_id=%s", (book_id,))
 
     conn.commit()

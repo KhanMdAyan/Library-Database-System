@@ -1,3 +1,8 @@
+# The main window layout 
+
+
+
+
 from PySide6.QtWidgets import QMainWindow, QPushButton, QVBoxLayout, QWidget
 from PySide6.QtCore import Qt
 from ui.books_window import BooksWindow
@@ -10,7 +15,7 @@ class MainWindow(QMainWindow):
     def __init__(self):
         super().__init__()
         self.setWindowTitle("Library Management System")
-        self.setMinimumWidth(600)
+        self.setMinimumWidth(600) # This width is set because it wasn't showing the full window title. 
 
         layout = QVBoxLayout()
         layout.setAlignment(Qt.AlignCenter)

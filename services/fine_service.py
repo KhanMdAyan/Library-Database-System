@@ -1,3 +1,9 @@
+# This calculates the fine for the borrowers.
+# For the students, I've set the fine as two percent of the books price, every day it gets added.
+# For the professors it is five percent
+
+
+
 from datetime import date
 from database.connection import get_connection
 from services.student_service import update_student_fine

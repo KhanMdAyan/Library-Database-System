@@ -1,9 +1,20 @@
+# Borrowed list window UI 
+# Can issue the book by entering the details, automatically checks all the IDs.
+# Also registers the returning of book. Instead of typing any number you search 
+# for the book, select it, enter the receving library staff id and click returned. 
+
+# Searches the books borrowed by a person, makes it easier to check which books a person
+# has borrowed and can also check their history.
+
+
+
 from PySide6.QtWidgets import (
     QMainWindow, QVBoxLayout, QHBoxLayout, QWidget,
     QPushButton, QTableWidget, QTableWidgetItem,
     QLineEdit, QLabel, QMessageBox, QComboBox
 )
-
+ 
+#  Importing different services from different files
 from services.borrow_service import return_book, issue_book
 from services.fine_service import run_daily_fine_update
 from services.email_service import send_overdue_emails
@@ -28,7 +39,7 @@ class BorrowedWindow(QMainWindow):
         main_layout.addWidget(self.table, 3)
         main_layout.addLayout(right_layout, 1)
 
-        # Search Borrower
+        # Searching the books that are borrowed by the borrower
         self.borrower_search = QLineEdit()
         self.borrower_search.setPlaceholderText("Search Borrower ID")
         right_layout.addWidget(self.borrower_search)
@@ -36,7 +47,7 @@ class BorrowedWindow(QMainWindow):
         self.borrower_btn = QPushButton("Search Borrower")
         right_layout.addWidget(self.borrower_btn)
 
-        # Search Staff
+        # Validate Staff
         self.staff_search = QLineEdit()
         self.staff_search.setPlaceholderText("Search Staff ID")
         right_layout.addWidget(self.staff_search)
@@ -44,15 +55,15 @@ class BorrowedWindow(QMainWindow):
         self.staff_btn = QPushButton("Search Staff")
         right_layout.addWidget(self.staff_btn)
 
-        # Search Book
+        # Search Books
         self.book_search = QLineEdit()
         self.book_search.setPlaceholderText("Search Book ID")
         right_layout.addWidget(self.book_search)
 
         self.book_btn = QPushButton("Search Book")
         right_layout.addWidget(self.book_btn)
-        # -------- ISSUE SECTION --------
-
+        
+        # issue section 
         self.issue_book_id = QLineEdit()
         self.issue_book_id.setPlaceholderText("Book ID")
 
@@ -95,7 +106,7 @@ class BorrowedWindow(QMainWindow):
 
         self.load_all()
 
-    # ------------------ LOAD ALL ------------------
+    # Fetch the entire borrowing history on startup, starting from the latest
 
     def load_all(self):
         conn = get_connection()
@@ -111,7 +122,6 @@ class BorrowedWindow(QMainWindow):
 
         self.populate_table(records)
 
-    # ------------------ POPULATE TABLE ------------------
 
     def populate_table(self, records):
         self.table.setRowCount(len(records))
@@ -121,7 +131,6 @@ class BorrowedWindow(QMainWindow):
             for col, value in enumerate(record):
                 self.table.setItem(row, col, QTableWidgetItem(str(value)))
 
-    # ------------------ SEARCH BORROWER ------------------
 
     def search_borrower(self):
         borrower_id = self.borrower_search.text()
@@ -156,7 +165,6 @@ class BorrowedWindow(QMainWindow):
 
         self.populate_table(records)
 
-    # ------------------ SEARCH STAFF ------------------
 
     def search_staff(self):
         staff_id = self.staff_search.text()
@@ -177,7 +185,6 @@ class BorrowedWindow(QMainWindow):
         self.total_label.setText("")
         self.populate_table(records)
 
-    # ------------------ SEARCH BOOK ------------------
 
     def search_book(self):
         book_id = self.book_search.text()
@@ -197,7 +204,7 @@ class BorrowedWindow(QMainWindow):
         self.total_label.setText("")
         self.populate_table(records)
 
-
+    # The process of issuing the books 
 
     def issue_book_action(self):
         book_id = self.issue_book_id.text()
@@ -216,7 +223,7 @@ class BorrowedWindow(QMainWindow):
         self.issue_type_input.clear()
 
 
-    # ------------------ RETURN ------------------
+    # Return process
 
     def return_selected(self):
         row = self.table.currentRow()

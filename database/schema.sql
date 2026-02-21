@@ -1,16 +1,23 @@
+-- The entire database schema
+
+
+-- Creating the database
 CREATE DATABASE library_db;
 USE library_db;
 
 -- Students table
+--Starting incrementing from different numbers for students, books, professors for easy recognition of the ID number
+-- Character lengths can be changed for different columns
+
 CREATE TABLE students (
     student_id INT AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(100),
+    name VARCHAR(100), 
     department VARCHAR(100),
     class VARCHAR(50),
     phone_number VARCHAR(20),
     email VARCHAR(100),
     pending_fines DECIMAL(10,2) DEFAULT 0
-) AUTO_INCREMENT=10000;
+) AUTO_INCREMENT=10000; 
 
 -- Professors table
 CREATE TABLE professors (
@@ -30,7 +37,7 @@ CREATE TABLE library_staff (
     email VARCHAR(100)
 ) AUTO_INCREMENT=30000;
 
--- BOOKS
+-- Books_list
 CREATE TABLE books (
     book_id INT AUTO_INCREMENT PRIMARY KEY,
     book_title VARCHAR(200),
@@ -41,6 +48,8 @@ CREATE TABLE books (
 ) AUTO_INCREMENT=40000;
 
 -- Book tracking table
+-- Enum limits issued to type student or professor, not really necessary as later on I've made the ui a drop down box that shows the options student or professor
+-- Foreign keys to help us validate ID numbers.
 CREATE TABLE borrowed (
     borrow_id INT AUTO_INCREMENT PRIMARY KEY,
     book_id INT,
