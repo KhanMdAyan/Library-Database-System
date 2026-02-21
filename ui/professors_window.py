@@ -74,6 +74,10 @@ class ProfessorsWindow(QMainWindow):
             self.email_input.text()
         )
         self.load_data()
+        self.name_input.clear()
+        self.dept_input.clear()
+        self.phone_input.clear()
+        self.email_input.clear()
 
     def remove_professor(self):
         row = self.table.currentRow()
