@@ -1,142 +1,132 @@
-LIBRARY MANAGEMENT SYSTEM
-- Desktop Library Management System using Python, PySide6 and MySQL
+📚 Library Management System
 
-A full-featured desktop Library Management System built using Python, PySide6 (Qt for Python), and MySQL.
-This application provides a structured graphical interface to manage books, students, professors, employees, and the complete borrowing and return workflow with fine tracking.
+Desktop Library Management System using Python, PySide6, and MySQL.
 
-FEATURES:
+A full-featured desktop Library Management System built using Python,
+PySide6 (Qt for Python), and MySQL.
+This application provides a structured graphical interface to manage
+books, students, professors, employees, and the complete borrowing and
+return workflow with fine tracking.
 
-Books Management:
+------------------------------------------------------------------------
 
-• Add/remove new books
+🚀 Features
 
-• View all books in a table format
+📖 Books Management
 
-• Track book availability status
+-   Add/remove new books
+-   View all books in a table format
+-   Track book availability status
+-   Store ISBN, topics, and price
 
-• Store ISBN, topics and price
+🎓 Students Management
 
-Students Management:
+-   Add/remove student details
+-   Store department and class
+-   Track pending fines
 
-• Add/remove student details
+👨‍🏫 Professors Management
 
-• Store department and class
+-   Add/remove professor records
+-   Track fines
+-   Department-wise management
 
-• Track pending fines
+👨‍💼 Employees Management
 
-Professors Management:
+-   Add/remove library staff
+-   Manage issuing authority
 
-• Add/remove professor records
+🔄 Borrow and Return System
 
-• Track fines
+-   Issue books to students or professors
+-   Automatic due date generation
+-   Fine tracking system
+-   Return book processing
+-   Search by Borrower ID
+-   Search by Staff ID
+-   Search by Book ID
 
-• Department-wise management
+🖥 GUI Features
 
-Employees Management:
+-   Multi-window structured navigation
+-   Table headings for all datasets
+-   Centered dashboard layout
+-   Dropdown borrower type selector
+-   Grid-based aligned forms
+-   Clean and structured UI design
 
-• Add/remoev library staff
+------------------------------------------------------------------------
 
-• Manage issuing authority
+🛠 Tech Stack
 
+-   Python 3.x
+-   PySide6 (Qt for Python) – https://doc.qt.io/qtforpython/
+-   MySQL
 
-Borrow and Return System:
+------------------------------------------------------------------------
 
-• Issue books to students or professors
-
-• Automatic due date generation
-
-• Fine tracking system
-
-• Return book processing
-
-• Search by Borrower ID
-
-• Search by Staff ID
-
-• Search by Book ID
-
-
-GUI Features:
-
-• Multi-window structured navigation
-
-• Table headings for all datasets
-
-• Centered dashboard layout
-
-• Dropdown borrower type selector
-
-• Grid-based aligned forms
-
-• Clean and structured UI design
-
-TECH STACK:
-
-• Python 3.x
-
-• PySide6 (Qt for Python)
-https://doc.qt.io/qtforpython/
-
-• MySQL
-
-
-INSTALLATION:
+⚙ Installation
 
 1. Clone the Repository
+
 git clone https://github.com/KhanMdAyan/Library-Database-System.git
 
-3. Create Virtual Environment (Recommended)
-  python -m venv venv
-* Activate (Windows):
-  venv\Scripts\activate
+2. Create Virtual Environment (Recommended)
 
-3. Install Dependencies(PySide6 and mysql connector)
+4. Install Dependencies (PySide, mysql connector)
+
 pip install PySide6 mysql-connector-python
 
-4. Setup MySQL Database
-  Run schema.sql on your MySQL server
-Update database credentials in config.py file
-Make sure they match your MySQL configuration.
-While you're at it, you can change email details too.
+5. Setup MySQL Database
 
-5. And that's it! Run the Application python main.py
+-   Run schema.sql on your MySQL server
+-   Update database credentials in config.py file
+-   Make sure they match your MySQL configuration
+-   You can also update email details there
 
-FINE LOGIC:
-Fines are calculated based on the books' price and depending on the borrower.
+▶ Run the Application
 
-• Fine is calculated based on due date
+python main.py
 
-• Fine updates when borrowed records are accessed
+------------------------------------------------------------------------
 
-• Fine amount is stored in database
+💰 Fine Logic
 
-• Displayed inside borrowed table
+-   Fine is calculated based on due date
+-   The value is set based on the books' price
+-   Fine updates when borrowed records are accessed
+-   Fine amount is stored in database
+-   Displayed inside borrowed table
+-   Fines are calculated based on the book’s price and borrower type
 
+------------------------------------------------------------------------
 
-FUTURE IMPROVEMENTS:
+🔮 Future Improvements
 
-• Authentication system
+-   Authentication system
+-   Export to CSV
+-   Sorting and filtering
+-   Reports dashboard
 
-• Export to CSV
+------------------------------------------------------------------------
 
-• Sorting and filtering
+🤝 Contribution
 
-• Reports dashboard
+1.  Fork the repository
+2.  Create a new branch
+3.  Make improvements
+4.  Submit a pull request
 
-FOR CONTRIBUTION:
+------------------------------------------------------------------------
 
-Fork the repository
-
-Create a new branch
-
-Make improvements
-
-Submit a pull request
-
-LICENSE:
+📄 License
 
 This project is open-source and intended for learning and academic use.
 
-AUTHOR: Ayan Khan
+------------------------------------------------------------------------
 
-Desktop application built using PySide6 and MySQL.
+👤 Author
+
+Ayan Khan
+
+Desktop application built using Python and MySQL.
