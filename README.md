@@ -138,4 +138,5 @@ LICENSE:
 This project is open-source and intended for learning and academic use.
 
 AUTHOR: Ayan Khan
+
 Desktop application built using PySide6 and MySQL.
