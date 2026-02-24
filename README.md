@@ -1,4 +1,4 @@
-📚 Library Management System
+# 📚 Library Management System
 
 Desktop Library Management System using Python, PySide6, and MySQL.
 
@@ -10,7 +10,42 @@ return workflow with fine tracking.
 
 ------------------------------------------------------------------------
 
-🚀 Features
+# 🛠 Tech Stack
+
+-   Python 3.x
+-   PySide6 (Qt for Python) – https://doc.qt.io/qtforpython/
+-   MySQL
+
+------------------------------------------------------------------------
+
+
+# 📸 Preview:
+
+* Main Window:
+
+
+<img width="897" height="287" alt="image" src="https://github.com/user-attachments/assets/4eee341b-8c6d-498c-a352-2035d54d8ec9" />
+
+* Books List Window:
+
+
+<img width="406" height="689" alt="image" src="https://github.com/user-attachments/assets/d0f93648-b3dc-4601-ab55-ba257bf71cef" />
+
+
+* Student List Window:
+
+
+<img width="404" height="657" alt="image" src="https://github.com/user-attachments/assets/121a2b50-cb3e-48bc-a9da-fd8f09157864" />
+
+* Borrowed List Window:
+
+
+<img width="1920" height="1005" alt="image" src="https://github.com/user-attachments/assets/f58510d6-ba6d-4b84-b129-e1afc34f4118" />
+
+
+------------------------------------------------------------------------
+
+# 🚀 Features
 
 📖 Books Management
 
@@ -55,17 +90,10 @@ return workflow with fine tracking.
 -   Grid-based aligned forms
 -   Clean and structured UI design
 
-------------------------------------------------------------------------
-
-🛠 Tech Stack
-
--   Python 3.x
--   PySide6 (Qt for Python) – https://doc.qt.io/qtforpython/
--   MySQL
 
 ------------------------------------------------------------------------
 
-⚙ Installation
+# ⚙ Installation
 
 1. Clone the Repository
 
@@ -84,13 +112,13 @@ pip install PySide6 mysql-connector-python
 -   Make sure they match your MySQL configuration
 -   You can also update email details there
 
-▶ Run the Application
+# ▶ Run the Application
 
 python main.py
 
 ------------------------------------------------------------------------
 
-💰 Fine Logic
+# 💰 Fine Logic
 
 -   Fine is calculated based on due date
 -   The value is set based on the books' price
@@ -101,7 +129,7 @@ python main.py
 
 ------------------------------------------------------------------------
 
-🔮 Future Improvements
+# 🔮 Future Improvements
 
 -   Authentication system
 -   Export to CSV
@@ -110,7 +138,7 @@ python main.py
 
 ------------------------------------------------------------------------
 
-🤝 Contribution
+# 🤝 Contribution
 
 1.  Fork the repository
 2.  Create a new branch
@@ -119,14 +147,18 @@ python main.py
 
 ------------------------------------------------------------------------
 
-📄 License
+# 📄 License
 
 This project is open-source and intended for learning and academic use.
 
 ------------------------------------------------------------------------
 
-👤 Author
+# 👤 Author
 
 Ayan Khan
 
-Desktop application built using Python and MySQL.
+📧 KhanMdAyan0@gmail.com
+
+🔗 LinkedIn: https://www.linkedin.com/in/khanmdayan/
+
+💻 GitHub: https://github.com/KhanMdAyan
